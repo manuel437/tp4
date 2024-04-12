@@ -22,7 +22,7 @@ public class ProfesorController {
 
 
     public void createAndAdd(){
-       this.profesorRepository.addList(new Profesor(this.console.ingresoNombre(),this.console.ingresoApellido(),this.console.ingresoEdad(),this.console.ingresoMateria()));
+       this.profesorRepository.addList(new Profesor(this.console.ingresoNombre(),this.console.ingresoApellido(),this.console.ingresoEdad()));
     }
 
     public void cargarProfesor(Profesor prof){

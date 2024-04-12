@@ -52,7 +52,7 @@ public class Alumno extends Persona{
     }
     @Override
     public String toString(){
-        return"|N°Legajo " + getLegajo() + "\n|Alumno " + getNombre() + getApellido() + "\n|Edad " + getEdad()  ;
+        return"\n|Alumno " + getNombre() + getApellido() + "\n|Edad " + getEdad()  ;
     }
 
 }

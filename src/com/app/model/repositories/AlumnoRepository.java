@@ -1,49 +1,31 @@
 package com.app.model.repositories;
 
 import com.app.model.entity.Alumno;
+import com.app.model.entity.Materia;
 import com.app.model.entity.Profesor;
 
 import java.util.ArrayList;
 
 public class AlumnoRepository {
-    /*
-    private ArrayList<Alumno> listaAlumno;
+
+    private ArrayList<Alumno> lista;
 
     public AlumnoRepository( ) {
-        this.listaAlumno = new ArrayList<>();
-    }
-
-    public ArrayList<Alumno> getListaAlumno() {
-        return listaAlumno;
-    }
-
-    public void setListaAlumno(ArrayList<Alumno> listaAlumno) {
-        this.listaAlumno = listaAlumno;
-    }
-    */
-    /*
-    private ArrayList<Profesor> lista;
-
-    public ProfesorRepository() {
         this.lista = new ArrayList<>();
     }
 
-    public ArrayList<Profesor> getLista() {
+    public ArrayList<Alumno> getListaAlumno() {
         return lista;
     }
 
-    public void setLista(ArrayList<Profesor> lista) {
-        this.lista = lista;
+    public void setListaAlumno(ArrayList<Alumno> listaAlumno) {
+        this.lista = listaAlumno;
     }
 
-    public void addList(Profesor p){
-        this.lista.add(p);
-    }
-
-    public int posListaXId(String id){
+    public int posListaXLegajo(String id){
         int i = 0;
         while(i <this.lista.size()){
-            if(this.lista.get(i).getIdProfesor().equals(id)){
+            if(this.lista.get(i).getLegajo().equals(id)){
                 return i;
             }
             i++;
@@ -60,20 +42,11 @@ public class AlumnoRepository {
         }
         return -1;
     }
-    public String idXNombre(String nombre){
-        int i = 0;
-        while(i <this.lista.size()){
-            if(this.lista.get(i).getNombre().equals(nombre)){
-                return this.lista.get(i).getIdProfesor();
-            }
-            i++;
-        }
-        return "null";
-    }
 
-    public Profesor takeList(String id){
-        Profesor devol;
-        int pos = posListaXId(id);
+
+    public Alumno takeList(String legajo){
+        Alumno devol;
+        int pos = posListaXLegajo(legajo);
         if(pos != -1){
             devol = this.lista.get(pos);
             for(int y = pos;y<this.lista.size()-1;y++){
@@ -85,9 +58,12 @@ public class AlumnoRepository {
             return null;
         }
     }
-    public void deleteProfesorList(String id){
-        Profesor  p = this.takeList(id);
-        p = null;
+    public void deleteProfesorList(String legajo){
+        int pos = this.posListaXLegajo(legajo);
+        if(pos != -1){
+            this.getListaAlumno().remove(pos);
+        }
+
     }
-    */
+
 }

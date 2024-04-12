@@ -8,10 +8,9 @@ public class Profesor extends Persona {
     private String materia;
     private String idProfesor;
 
-    public Profesor(String nombre, String apellido, int edad,String materia) {
+    public Profesor(String nombre, String apellido, int edad) {
         super(nombre,apellido,edad);
-        this.idProfesor = UUID.randomUUID().toString();
-        this.materia = materia;
+        this.idProfesor = "prof" + UUID.randomUUID().toString();
     }
 
     public String getMateria() {
@@ -34,7 +33,7 @@ public class Profesor extends Persona {
     public String toString(){
         return
                 "Profesor " + getNombre() + " " + getApellido() +
-                "\nEdad " + getEdad() + " Materia " +getMateria() + "\n\n";
+                "\nEdad " + getEdad() + "\n\n";
     }
 
 

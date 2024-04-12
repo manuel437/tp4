@@ -23,6 +23,7 @@ public class ProfesorRepository {
         this.lista.add(p);
     }
 
+
     public int posListaXId(String id){
         int i = 0;
         while(i <this.lista.size()){
@@ -33,6 +34,7 @@ public class ProfesorRepository {
         }
         return -1;
     }
+
     public int posListaXNombreYApellido(String nombre,String apellido){
         int i = 0;
         while(i <this.lista.size()){
@@ -43,10 +45,11 @@ public class ProfesorRepository {
         }
         return -1;
     }
-    public String idXNombre(String nombre){
+
+    public String idXNombreYApellido(String nombre,String apellido){
         int i = 0;
         while(i <this.lista.size()){
-            if(this.lista.get(i).getNombre().equals(nombre)){
+            if(this.lista.get(i).getNombre().equals(nombre) && this.lista.get(i).getApellido().equals(apellido)){
                 return this.lista.get(i).getIdProfesor();
             }
             i++;
@@ -62,15 +65,20 @@ public class ProfesorRepository {
             for(int y = pos;y<this.lista.size()-1;y++){
                 this.lista.set(y,this.lista.get(y+1));
             }
-            this.lista.remove(this.lista.size()-1);
+            this.lista.removeLast();
             return devol;
         }else{
+
             return null;
         }
     }
     public void deleteProfesorList(String id){
-        Profesor  p = this.takeList(id);
-        p = null;
+        int pos = this.posListaXId(id);
+        if(pos != -1){
+            this.getLista().remove(pos);
+
+        }
+
     }
 
 
