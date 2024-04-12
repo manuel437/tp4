@@ -2,16 +2,18 @@ package com.app.model.entity;
 
 import com.app.model.entity.abstracto.Persona;
 
+import java.util.UUID;
+
 public class Alumno extends Persona{
     private String legajo;
     private double promedio;
     private int cantAsignaturasCursando;
     private int cantAsignaturasAprobadas;
 
-    public Alumno(String nombre, String apellido, int edad,String legajo,double promedio,int cantAsignaturasAprobadas,int cantAsignaturasCursando) {
+    public Alumno(String nombre, String apellido, int edad,int cantAsignaturasAprobadas,int cantAsignaturasCursando) {
         super(nombre, apellido, edad);
-        this.legajo = legajo;
-        this.promedio = promedio;
+        this.legajo = UUID.randomUUID().toString();
+        this.promedio = 0;
         this.cantAsignaturasAprobadas = cantAsignaturasAprobadas;
         this.cantAsignaturasCursando = cantAsignaturasCursando;
 

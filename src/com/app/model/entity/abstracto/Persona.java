@@ -11,9 +11,6 @@ abstract public class Persona {
         this.edad = edad;
     }
 
-    public Persona() {
-    }
-
     public String getNombre() {
         return nombre;
     }

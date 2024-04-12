@@ -2,15 +2,16 @@ package com.app.model.entity;
 
 import com.app.model.entity.abstracto.Persona;
 
+import java.util.UUID;
+
 public class Profesor extends Persona {
     private String materia;
     private String idProfesor;
 
-    public Profesor(String nombre, String apellido, int edad,String materia,String idProfesor) {
+    public Profesor(String nombre, String apellido, int edad,String materia) {
         super(nombre,apellido,edad);
-        this.idProfesor = idProfesor;
+        this.idProfesor = UUID.randomUUID().toString();
         this.materia = materia;
-
     }
 
     public String getMateria() {
@@ -31,8 +32,8 @@ public class Profesor extends Persona {
 
     @Override
     public String toString(){
-        return "Id " + getIdProfesor() +
-                "\nProfesor " + getNombre() + " " + getApellido() +
+        return
+                "Profesor " + getNombre() + " " + getApellido() +
                 "\nEdad " + getEdad() + " Materia " +getMateria() + "\n\n";
     }
 

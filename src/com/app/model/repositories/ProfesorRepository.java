@@ -33,6 +33,26 @@ public class ProfesorRepository {
         }
         return -1;
     }
+    public int posListaXNombreYApellido(String nombre,String apellido){
+        int i = 0;
+        while(i <this.lista.size()){
+            if(this.lista.get(i).getNombre().equals(nombre) && this.lista.get(i).getApellido().equals(apellido)){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+    public String idXNombre(String nombre){
+        int i = 0;
+        while(i <this.lista.size()){
+            if(this.lista.get(i).getNombre().equals(nombre)){
+                return this.lista.get(i).getIdProfesor();
+            }
+            i++;
+        }
+        return "null";
+    }
 
     public Profesor takeList(String id){
         Profesor devol;
@@ -47,6 +67,10 @@ public class ProfesorRepository {
         }else{
             return null;
         }
+    }
+    public void deleteProfesorList(String id){
+        Profesor  p = this.takeList(id);
+        p = null;
     }
 
 
