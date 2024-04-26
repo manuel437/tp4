@@ -15,9 +15,9 @@ public class Main {
         Console consola = new Console();
         AlumnoController alumnoController = new AlumnoController(consola);
         ProfesorController profesorController = new ProfesorController(consola);
-        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("pepe","lana",22,"Tec.Programacion"));
-        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("merce","benz",23,"Tec.Gestion ambiental"));
-        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("fort","klr",24,"Ing.Naval"));
+        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("Pepe","Lana",22,"Tec.Programacion"));
+        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("Mercedes","Benz",23,"Tec.Gestion ambiental"));
+        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("Carla","Kingsman",24,"Ing.Naval"));
         int opc;
         do{
             switch(opc = consola.menuPrincipal()){
