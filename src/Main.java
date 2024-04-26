@@ -1,35 +1,41 @@
+import com.app.controllador.AlumnoController;
+import com.app.controllador.PersonaController;
 import com.app.controllador.ProfesorController;
-import com.app.model.entity.Materia;
+import com.app.model.entity.Alumno;
 import com.app.model.entity.Profesor;
+import com.app.model.entity.abstracto.Persona;
+import com.app.model.repositories.PersonaRepository;
 import com.app.view.Console;
 
 import java.util.Scanner;
-import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
 
-        ProfesorController pro = new ProfesorController();
-        pro.cargarProfesor(new Profesor("pepe","foe",34));
-        pro.cargarProfesor(new Profesor("pepo","forty",24));
-        pro.cargarProfesor(new Profesor("pepi","foa",36));
-        pro.cargarProfesor(new Profesor("pepu","foa",36));
-        pro.printListProfesor();
-        Profesor pro2 = pro.getProfesorRepository().takeList(pro.getProfesorRepository().idXNombreYApellido(pro.getConsole().ingresoNombre(),pro.getConsole().ingresoApellido()));
-        pro.printListProfesor();
-
-        System.out.printf("se saco :" + pro2.toString());
-
-
-
-
-        /*
-        Materia mat = new Materia("mate",20,"PEPE");
-        System.out.println(mat.toString());
-        */
-
-
-
-
+        Console consola = new Console();
+        AlumnoController alumnoController = new AlumnoController(consola);
+        ProfesorController profesorController = new ProfesorController(consola);
+        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("pepe","grillo",34,"mate"));
+        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("merce","benz",23,"lengua"));
+        alumnoController.getPersonaRepository().getListaPersona().add(new Alumno("fort","klr",24,"bio"));
+        int opc;
+        do{
+            switch(opc = consola.menuPrincipal()){
+                case 1:
+                    profesorController.printList();
+                    alumnoController.printList();
+                    break;
+                case 2:
+                    alumnoController.gestion();
+                    break;
+                case 3:
+                    profesorController.gestion();
+                    break;
+            }
+        }while(opc != 0);
+        consola.cerrarOperaciones();
     }
+
+
+
 }

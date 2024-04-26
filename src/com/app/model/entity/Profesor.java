@@ -2,39 +2,30 @@ package com.app.model.entity;
 
 import com.app.model.entity.abstracto.Persona;
 
-import java.util.UUID;
-
 public class Profesor extends Persona {
-    private String materia;
-    private String idProfesor;
+    private int horasTrabajadas;
 
     public Profesor(String nombre, String apellido, int edad) {
         super(nombre,apellido,edad);
-        this.idProfesor = "prof" + UUID.randomUUID().toString();
+
+        this.horasTrabajadas = 0;
+    }
+    public Profesor(String nombre, String apellido, int edad,int horasTra) {
+        super(nombre,apellido,edad);
+
+        this.horasTrabajadas = horasTra;
     }
 
-    public String getMateria() {
-        return materia;
+
+    public int getHorasTrabajadas() {
+        return horasTrabajadas;
     }
 
-    public String getIdProfesor() {
-        return idProfesor;
+    public void setHorasTrabajadas(int horasTrabajadas) {
+        this.horasTrabajadas = horasTrabajadas;
     }
-
-    public void setMateria(String materia) {
-        this.materia = materia;
-    }
-
-    public void setIdProfesor(String idProfesor) {
-        this.idProfesor = idProfesor;
-    }
-
     @Override
     public String toString(){
-        return
-                "Profesor " + getNombre() + " " + getApellido() +
-                "\nEdad " + getEdad() + "\n\n";
+        return"\n|Profesor " + getNombre() + " " + getApellido() + " |Edad " + getEdad()  + "|Horas trabajadas " + getHorasTrabajadas() + "\n";
     }
-
-
 }

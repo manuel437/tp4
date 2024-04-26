@@ -1,93 +1,65 @@
 package com.app.controllador;
 
 import com.app.model.entity.Profesor;
-import com.app.model.repositories.ProfesorRepository;
+import com.app.model.entity.abstracto.Persona;
 import com.app.view.Console;
 
-public class ProfesorController {
-
-    private ProfesorRepository profesorRepository;
-    private Console console;
-
+public class ProfesorController extends PersonaController implements IGestionUsuario,ICrearYAgregar {
     public ProfesorController() {
-        this.console = new Console();
-        this.profesorRepository = new ProfesorRepository();
     }
 
-    public ProfesorRepository getProfesorRepository() {
-        return profesorRepository;
+    public ProfesorController(Console console) {
+        super(console);
     }
 
-    public Console getConsole() {return console;}
+    @Override
+    public void gestion() {
 
+            int pos;
 
-    public void createAndAdd(){
-       this.profesorRepository.addList(new Profesor(this.console.ingresoNombre(),this.console.ingresoApellido(),this.console.ingresoEdad()));
-    }
+            do{
+                switch (pos = this.getConsole().menuProf()) {
+                    case 1:
+                        this.crearYAgregar();
+                        break;
+                    case 2:
+                        this.printList();
+                        break;
+                    case 3:
+                        Persona aux = this.getPersonaRepository().personaXNombreYApellido(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido());
+                        if(aux != null){
+                            System.out.println(aux.toString());
+                        }else{
+                            System.out.println("No se encontro");
+                        }
+                        break;
+                    case 4:
 
-    public void cargarProfesor(Profesor prof){
-        this.profesorRepository.getLista().addLast(prof);
-    }
+                        Profesor auxMod =(Profesor) this.getPersonaRepository().personaXNombreYApellido(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido());
+                        if(auxMod != null){
+                            System.out.println(auxMod.toString());
+                            auxMod.setHorasTrabajadas(this.getConsole().ingresoHorasTrabajadas());
+                        }else{
+                            System.out.println("No se encontro");
+                        }
+                        break;
+                    case 5:
 
-    public void printListProfesor(){
-        System.out.println(this.profesorRepository.getLista().toString());
-    }
-    public void borrarProfesor(){
-        this.profesorRepository.getLista().remove(this.profesorRepository.posListaXNombreYApellido(this.console.ingresoNombre(),this.console.ingresoApellido()));
-    }
+                        if(this.getPersonaRepository().deleteElementList(this.getPersonaRepository().personaXNombreYApellido(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido()).getId()) == -1){
+                            System.out.println("No se encontro Persona");
+                        }
+                        break;
 
-    public void modProfesor(){
-        int pos = this.profesorRepository.posListaXNombreYApellido(this.console.ingresoNombre(),this.console.ingresoApellido());
-        System.out.println("Ingrese opcion");
-        if(pos != 0){
-            switch(this.console.ingresoInt()){
-                case 1:
-                    break;
-                default:
-                    System.out.println("No se reconocio opcion");
-                    break;
-            }
+                    default:
+                        System.out.println("No se reconocio opcion");
+                        break;
+                }
+            } while(pos != 0);
         }
-    }
 
-
-
-
-
-
-    public void menuProfesor(){
-        int opc;
-        do{
-
-            switch(opc=this.console.menuProf()){
-                case 0:
-                    System.out.println("Cerrando");
-                    break;
-                case 1:
-                    this.createAndAdd();
-                    break;
-                case 2:
-                    this.printListProfesor();
-                    break;
-                case 3:
-
-                    break;
-                case 4:
-
-                    break;
-                case 5:
-                    this.borrarProfesor();
-                    break;
-                default:
-                    System.out.println("Opcion no valida, reintente");
-                    break;
-
-
-            }
-            System.out.print("\n");
-
-
-        }while(opc != 0);
+    @Override
+    public void crearYAgregar() {
+        this.getPersonaRepository().getListaPersona().add(new Profesor(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido(),this.getConsole().ingresoEdad(),this.getConsole().ingresoHorasTrabajadas()));
     }
 
 

@@ -1,30 +1,68 @@
 package com.app.controllador;
 
-import com.app.model.repositories.AlumnoRepository;
+import com.app.model.entity.Alumno;
+import com.app.model.entity.abstracto.Persona;
 import com.app.view.Console;
 
-public class AlumnoController {
-    private AlumnoRepository alumnoRepository;
-    private Console console;
+public class AlumnoController extends PersonaController implements IGestionUsuario,ICrearYAgregar{
+    public AlumnoController(Console console) {
+        super(console);
+    }
 
     public AlumnoController() {
-        this.alumnoRepository =new AlumnoRepository();
-        this.console = new Console();
     }
 
-    public AlumnoRepository getAlumnoRepository() {
-        return alumnoRepository;
+    @Override
+    public void gestion() {
+
+        int pos;
+
+        do{
+            switch (pos = this.getConsole().menuAlumnos()) {
+                case 1:
+                    this.crearYAgregar();
+                    break;
+                case 2:
+                    this.printList();
+                    break;
+                case 3:
+                    Persona aux = this.getPersonaRepository().personaXNombreYApellido(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido());
+                    if(aux != null){
+                        System.out.println(aux.toString());
+                    }else{
+                        System.out.println("No se encontro");
+                    }
+                    break;
+                case 4:
+
+                    Alumno auxMod =(Alumno) this.getPersonaRepository().personaXNombreYApellido(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido());
+                    if(auxMod != null){
+                        System.out.println(auxMod.toString());
+                        //auxMod.setNombreCarrera(this.getConsole().ingresoCarrera());
+                        auxMod.setPromedio(this.getConsole().ingresoPromedio());
+                    }else{
+                        System.out.println("No se encontro");
+                    }
+                    break;
+                case 5:
+
+                    if(this.getPersonaRepository().deleteElementList(
+                            this.getPersonaRepository().personaXNombreYApellido(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido())
+                                    .getId())
+                            ==-1){
+                        System.out.println("No se encontro Persona");
+                    }
+                    break;
+
+                default:
+                    System.out.println("No se reconocio opcion");
+                    break;
+            }
+        } while(pos != 0);
     }
 
-    public Console getConsole() {
-        return console;
-    }
-
-    public void setAlumnoRepository(AlumnoRepository alumnoRepository) {
-        this.alumnoRepository = alumnoRepository;
-    }
-
-    public void setConsole(Console console) {
-        this.console = console;
+    @Override
+    public void crearYAgregar() {
+        this.getPersonaRepository().getListaPersona().add(new Alumno(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido(),this.getConsole().ingresoEdad(),this.getConsole().ingresoMateria()));
     }
 }

@@ -1,14 +1,22 @@
 package com.app.model.entity.abstracto;
 
+import java.util.UUID;
+
 abstract public class Persona {
     private String nombre;
     private String apellido;
     private int edad;
+    private String id;
 
     public Persona(String nombre,String apellido,int edad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getNombre() {
@@ -36,6 +44,6 @@ abstract public class Persona {
     }
     @Override
     public String toString(){
-        return "|Alumno| " + getNombre() + " " + getApellido() + "\n |Edad| " + getEdad() ;
+        return "|Nombre y apellido| " + getNombre() + " " + getApellido() + "\n |Edad| " + getEdad() ;
     }
 }

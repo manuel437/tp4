@@ -5,22 +5,25 @@ import com.app.model.entity.abstracto.Persona;
 import java.util.UUID;
 
 public class Alumno extends Persona{
-    private String legajo;
+
     private double promedio;
     private int cantAsignaturasCursando;
     private int cantAsignaturasAprobadas;
+    private String nombreCarrera;
 
-    public Alumno(String nombre, String apellido, int edad,int cantAsignaturasAprobadas,int cantAsignaturasCursando) {
+
+    public Alumno(String nombre, String apellido, int edad,String nombreCarrera) {
         super(nombre, apellido, edad);
-        this.legajo = UUID.randomUUID().toString();
         this.promedio = 0;
-        this.cantAsignaturasAprobadas = cantAsignaturasAprobadas;
-        this.cantAsignaturasCursando = cantAsignaturasCursando;
-
+        this.nombreCarrera = nombreCarrera;
     }
 
-    public String getLegajo() {
-        return legajo;
+    public String getNombreCarrera() {
+        return nombreCarrera;
+    }
+
+    public void setNombreCarrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
     }
 
     public double getPromedio() {
@@ -35,9 +38,7 @@ public class Alumno extends Persona{
         return cantAsignaturasAprobadas;
     }
 
-    public void setLegajo(String legajo) {
-        this.legajo = legajo;
-    }
+
 
     public void setPromedio(double promedio) {
         this.promedio = promedio;
@@ -50,9 +51,21 @@ public class Alumno extends Persona{
     public void setCantAsignaturasAprobadas(int cantAsignaturasAprobadas) {
         this.cantAsignaturasAprobadas = cantAsignaturasAprobadas;
     }
+
+    public void setPromedio(float promedio) {
+        this.promedio = promedio;
+    }
+
     @Override
+    /*
     public String toString(){
-        return"\n|Alumno " + getNombre() + getApellido() + "\n|Edad " + getEdad()  ;
+        return "\n|cantAprovadas" + getCantAsignaturasAprobadas() + "\n";
+    }
+    */
+
+
+    public String toString(){
+        return"\n|Alumno " + getNombre() +" "+ getApellido() + " |Edad " + getEdad() + " |Carrera " + getNombreCarrera() + " |Promedio " + getPromedio() + " |CantAsignaturasAprobadas " + getCantAsignaturasAprobadas() +"\n";
     }
 
 }
