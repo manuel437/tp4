@@ -2,15 +2,25 @@ package com.app.controllador;
 
 import com.app.model.entity.Profesor;
 import com.app.model.entity.abstracto.Persona;
+import com.app.model.repositories.PersonaRepository;
 import com.app.view.Console;
 
 public class ProfesorController extends PersonaController implements IGestionUsuario,ICrearYAgregar {
-    public ProfesorController() {
+    public ProfesorController(Console console, PersonaRepository personaRepository) {
+        super(console, personaRepository);
     }
 
     public ProfesorController(Console console) {
         super(console);
+        this.setPersonaRepository(new PersonaRepository());
     }
+
+
+    public ProfesorController() {
+        this.setPersonaRepository(new PersonaRepository());
+        this.setConsole(new Console());
+    }
+
 
     @Override
     public void gestion() {
@@ -19,6 +29,8 @@ public class ProfesorController extends PersonaController implements IGestionUsu
 
             do{
                 switch (pos = this.getConsole().menuProf()) {
+                    case 0:
+                        break;
                     case 1:
                         this.crearYAgregar();
                         break;

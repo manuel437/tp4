@@ -2,14 +2,22 @@ package com.app.controllador;
 
 import com.app.model.entity.Alumno;
 import com.app.model.entity.abstracto.Persona;
+import com.app.model.repositories.PersonaRepository;
 import com.app.view.Console;
 
 public class AlumnoController extends PersonaController implements IGestionUsuario,ICrearYAgregar{
+    public AlumnoController(Console console, PersonaRepository personaRepository) {
+        super(console, personaRepository);
+    }
+
     public AlumnoController(Console console) {
         super(console);
+        this.setPersonaRepository(new PersonaRepository());
     }
 
     public AlumnoController() {
+        this.setPersonaRepository(new PersonaRepository());
+        this.setConsole(new Console());
     }
 
     @Override
@@ -19,6 +27,8 @@ public class AlumnoController extends PersonaController implements IGestionUsuar
 
         do{
             switch (pos = this.getConsole().menuAlumnos()) {
+                case 0:
+                    break;
                 case 1:
                     this.crearYAgregar();
                     break;

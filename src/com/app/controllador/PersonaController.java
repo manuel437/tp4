@@ -8,6 +8,11 @@ abstract public class PersonaController {
     private PersonaRepository personaRepository;
     private Console console;
 
+    public PersonaController(Console console,PersonaRepository personaRepository) {
+        this.console = console;
+        this.personaRepository = personaRepository;
+    }
+
     public PersonaController(Console console) {
         this.console = console;
         this.personaRepository = new PersonaRepository();
@@ -41,37 +46,7 @@ abstract public class PersonaController {
 
 
 
-    /*
-    public void menuGestion( ) {
-        int pos;
-        do{
-            switch (pos = this.getConsole().menuPrincipal()) {
-                case 1:
-                    System.out.println(this.getPersonaRepository().getListaPersona().toString());
-                    break;
-                case 2:
-                    Persona aux = this.personaXNombreYApellido(this.getConsole().ingresoNombre(),this.getConsole().ingresoApellido());
-                    if(aux != null){
-                        System.out.println(aux.toString());
-                    }else{
-                        System.out.println("No se encontro");
-                    }
-                case 3:
-                    this.menuGestionAlumnos();
-                    break;
-                case 4:
-                    this.menuGestionProfesores();
-                    break;
 
-
-                default:
-                    System.out.println("No se reconocio opcion");
-                    break;
-            }
-        } while(pos != 0);
-    }
-
-*/
 }
 
 
